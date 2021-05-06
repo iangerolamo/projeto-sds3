@@ -1,6 +1,7 @@
 package com.ig.dsvendas.services;
 
 import com.ig.dsvendas.dto.SaleDto;
+import com.ig.dsvendas.dto.SaleSumDto;
 import com.ig.dsvendas.entities.Sale;
 import com.ig.dsvendas.repositories.SaleRepository;
 import com.ig.dsvendas.repositories.SellerRepository;
@@ -11,7 +12,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class SaleService {
@@ -27,5 +27,10 @@ public class SaleService {
         sellerRepository.findAll();
         Page<Sale> result = repository.findAll(pageable);
         return result.map(x -> new SaleDto(x));
+    }
+
+    @Transactional(readOnly = true)
+    public List<SaleSumDto> amountGroupedBySeller() {
+        return repository.amountGroupedBySeller();
     }
 }
