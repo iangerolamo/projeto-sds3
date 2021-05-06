@@ -1,6 +1,7 @@
 package com.ig.dsvendas.services;
 
 import com.ig.dsvendas.dto.SaleDto;
+import com.ig.dsvendas.dto.SaleSuccessDto;
 import com.ig.dsvendas.dto.SaleSumDto;
 import com.ig.dsvendas.entities.Sale;
 import com.ig.dsvendas.repositories.SaleRepository;
@@ -32,5 +33,10 @@ public class SaleService {
     @Transactional(readOnly = true)
     public List<SaleSumDto> amountGroupedBySeller() {
         return repository.amountGroupedBySeller();
+    }
+
+    @Transactional(readOnly = true)
+    public List<SaleSuccessDto> successGroupedBySeller() {
+        return repository.successGroupedBySeller();
     }
 }
